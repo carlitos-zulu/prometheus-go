@@ -1,0 +1,51 @@
+version: '3'
+services:
+  api-go:
+    image: docker-prometheus-go
+    container_name: api-go
+    # Remove comments above if DB is needed
+    # networks:
+    #   - prometheus-go-mysql
+    ports:
+       - 8080:8080
+  api-go-1:
+    image: docker-prometheus-go
+    container_name: api-go-1
+    # Remove comments above if DB is needed
+    # networks:
+    #   - prometheus-go-mysql
+    ports:
+       - 8081:8080
+  api-go-2:
+    image: docker-prometheus-go
+    container_name: api-go-2
+    # Remove comments above if DB is needed
+    # networks:
+    #   - prometheus-go-mysql
+    ports:
+       - 8082:8080
+  # Remove comments above if DB is needed
+  # db:
+  #   image: mysql:8
+  #   restart: always
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=development
+  #     - MYSQL_DATABASE=barber_db
+  #   volumes:
+  #     - ./testdata:/var/lib/mysql
+  #     - ./migration/test:/docker-entrypoint-initdb.d
+  #   tty: true
+  #   networks:
+  #     - prometheus-go-mysql
+  #   ports:
+  #     - "3306:3306"
+
+# Volumes
+volumes:
+  testdata:
+
+# Remove comments above if DB is needed
+# Networks to be created to facilitate communication between containers
+# networks:
+#   prometheus-go-mysql:
+#     driver: bridge
