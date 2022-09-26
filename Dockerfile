@@ -38,4 +38,4 @@ RUN go build -v -o /usr/local/bin/app ./cmd/api/main.go
 CMD ["app"]
 
 # Run the script: docker build --tag docker-prometheus-go --build-arg GIT_USER=YOUR_MAIL --build-arg GIT_PWD=YOUR_TOKEN .
-# After, run: docker run -d -p 8080:8080 docker-prometheus-go
+# After, run: docker compose up -d
