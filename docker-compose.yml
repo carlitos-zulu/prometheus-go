@@ -3,6 +3,8 @@ services:
   api-go:
     image: docker-prometheus-go
     container_name: api-go
+    env_file:
+      - docker.env
     # Remove comments above if DB is needed
     # networks:
     #   - prometheus-go-mysql
@@ -11,6 +13,8 @@ services:
   api-go-1:
     image: docker-prometheus-go
     container_name: api-go-1
+    env_file:
+      - docker.env
     # Remove comments above if DB is needed
     # networks:
     #   - prometheus-go-mysql
@@ -19,6 +23,8 @@ services:
   api-go-2:
     image: docker-prometheus-go
     container_name: api-go-2
+    env_file:
+      - docker.env
     # Remove comments above if DB is needed
     # networks:
     #   - prometheus-go-mysql

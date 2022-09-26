@@ -1,29 +1,41 @@
-FROM golang:1.19
+FROM golang:1.19 AS build
 
-WORKDIR /usr/src/app
+ARG GIT_USER=""
+ARG GIT_PWD=""
 
-RUN git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+# git is required to fetch go dependencies
+RUN apt-get update && apt-get install -y ca-certificates git-core ssh
+
+# Create the user and group files that will be used in the running 
+# container to run the process as an unprivileged user.
+RUN mkdir /user && \
+    echo 'nobody:x:65534:65534:nobody:/:' > /user/passwd && \
+    echo 'nobody:x:65534:' > /user/group
+
+# Create a netrc file using the credentials specified using --build-arg
+RUN printf "machine github.com\n\
+    login ${GIT_USER}\n\
+    password ${GIT_PWD}\n\
+    \n\
+    machine api.github.com\n\
+    login ${GIT_USER}\n\
+    password ${GIT_PWD}\n"\
+    >> /root/.netrc
+RUN chmod 600 /root/.netrc
+
 ENV GOPRIVATE="github.com/zuluapp"
 
-# install git
-RUN apt-get update
-RUN apt-get install -y git ssh
+# Set the working directory outside $GOPATH to enable the support for modules.
+WORKDIR /usr/src/app
 
-# add credentials on build
-ARG SSH_PRIVATE_KEY
-RUN mkdir /root/.ssh/
-RUN echo "${SSH_PRIVATE_KEY}" > /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-
-# make sure your domain is accepted
-RUN touch /root/.ssh/known_hosts
-RUN ssh-keyscan github.com >> /root/.ssh/known_hosts
-
-# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
 COPY go.mod go.sum ./
+
 RUN go mod download && go mod verify
 
 COPY . .
 RUN go build -v -o /usr/local/bin/app ./cmd/api/main.go
 
 CMD ["app"]
+
+# Run the script: docker build --tag docker-prometheus-go --build-arg GIT_USER=YOUR_MAIL --build-arg GIT_PWD=YOUR_TOKEN .
+# After, run: docker run -d -p 8080:8080 docker-prometheus-go
