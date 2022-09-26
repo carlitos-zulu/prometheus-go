@@ -6,12 +6,6 @@ ARG GIT_PWD=""
 # git is required to fetch go dependencies
 RUN apt-get update && apt-get install -y ca-certificates git-core ssh
 
-# Create the user and group files that will be used in the running 
-# container to run the process as an unprivileged user.
-RUN mkdir /user && \
-    echo 'nobody:x:65534:65534:nobody:/:' > /user/passwd && \
-    echo 'nobody:x:65534:' > /user/group
-
 # Create a netrc file using the credentials specified using --build-arg
 RUN printf "machine github.com\n\
     login ${GIT_USER}\n\
