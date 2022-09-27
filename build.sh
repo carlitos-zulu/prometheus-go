@@ -23,6 +23,8 @@ cat ~/.netrc
 
 ls -lha ~/.netrc
 
+cd
+
 pwd
 ls -lha
 
