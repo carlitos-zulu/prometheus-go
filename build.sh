@@ -6,7 +6,7 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
-yum localinstall gh_*_linux_amd64.rpm
+sudo yum localinstall gh_*_linux_amd64.rpm
 
 git config --global credential.cacheOptions "--timeout 300"
 git config --global user.name $GIT_USER
