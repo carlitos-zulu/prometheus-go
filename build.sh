@@ -7,7 +7,11 @@ export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
 whoami
-cp * ~/
+
+cp go.mod ~/
+cp go.sum ~/
+cp -R cmd ~/
+cp -R internal ~/
 
 (
     echo "machine github.com"
