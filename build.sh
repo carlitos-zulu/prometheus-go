@@ -6,6 +6,15 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
+echo "machine github.com\n\
+    login $GIT_USER\n\
+    password $GIT_PWD\n\
+\n\
+machine api.github.com\n\
+    login $GIT_USER\n\
+    password $GIT_PWD\n"\
+    >> ~/.netrc
+
 # install packages and dependencies
 go mod tidy
 
