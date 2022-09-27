@@ -6,11 +6,7 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
-sudo yum localinstall gh_*_linux_amd64.rpm
-
-git config --global credential.cacheOptions "--timeout 300"
-git config --global user.name $GIT_USER
-gh auth login --with-token $GIT_PWD
+echo "machine github.com\nlogin $GIT_USER\npassword $GIT_PWD\n\nmachine api.github.com\nlogin $GIT_USER\npassword $GIT_PWD\n" > ~/.netrc
 
 # install packages and dependencies
 go mod tidy
