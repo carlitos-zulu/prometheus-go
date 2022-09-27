@@ -7,7 +7,7 @@ export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
 git config --global credential.cacheOptions "--timeout 300"
-git config --global user.name=$GIT_USER
+git config --global user.name $GIT_USER
 gh auth login --with-token $GIT_PWD
 
 # install packages and dependencies
