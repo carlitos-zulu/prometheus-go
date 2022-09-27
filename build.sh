@@ -6,6 +6,8 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
+whoami
+
 (
     echo "machine github.com"
     echo "    login $GIT_USER"
@@ -13,7 +15,7 @@ export APPLICATION_ID=1234
     echo "machine api.github.com"
     echo "    login $GIT_USER"
     echo "    password $GIT_PWD"
- ) > /root/.netrc
+) > /root/.netrc
 
 chmod 600 /root/.netrc
 
