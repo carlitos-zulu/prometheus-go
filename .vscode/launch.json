@@ -9,7 +9,12 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/cmd/main.go"
+            "program": "${workspaceFolder}/cmd/api/main.go",
+            "env": {
+                "APPLICATION": "prometheus-go",
+                "APPLICATION_ID": "1234567890123456789012345678901234567890",
+                "SCOPE": "develop-read"
+            }
         }
     ]
 }

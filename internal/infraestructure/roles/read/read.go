@@ -36,6 +36,10 @@ func (container readContainer) RegisterRoutes(basePath string) func(*gin.RouterG
 				"carlitos": "carlitos-zulu",
 			})
 
+			metrics.IncrementGauge("zulu_my_custom_gauge", utils.Map{
+				"carlitos": "gauge",
+			})
+
 			response := utils.Map{
 				"message": "funciona!",
 			}

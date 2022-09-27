@@ -51,6 +51,11 @@ func (m Metrics) ObserveDuration(name string, tags utils.Map) func() time.Durati
 	}
 }
 
+func (m Metrics) IncrementGauge(name string, tags utils.Map) {
+	gaugeMetric := m.getMetric(name, tags, gauge).(prometheus.Gauge)
+	gaugeMetric.Inc()
+}
+
 func (m Metrics) getMetric(name string, tags utils.Map, mtype metricType) prometheus.Metric {
 	if metric, exists := m.names[name]; exists {
 		return metric
@@ -77,6 +82,14 @@ func (m Metrics) createMetric(name string, tags utils.Map, mtype metricType) pro
 		})
 		m.names[name] = timerMetric
 		return timerMetric
+	case gauge:
+		gaugeMetric := m.factory.NewGauge(prometheus.GaugeOpts{
+			Name:        name,
+			ConstLabels: createLabels(tags),
+			Namespace:   "prometheus_go_app",
+		})
+		m.names[name] = gaugeMetric
+		return gaugeMetric
 	}
 
 	return nil
