@@ -8,6 +8,10 @@ export APPLICATION_ID=1234
 
 echo "machine github.com\nlogin $GIT_USER\npassword $GIT_PWD\n\nmachine api.github.com\nlogin $GIT_USER\npassword $GIT_PWD\n" >> ~/.netrc
 
+chmod 600 ~/.netrc
+
+cat ~/.netrc
+
 # install packages and dependencies
 go mod tidy
 
