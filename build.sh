@@ -1,7 +1,7 @@
 #!/usr/bin/env bash 
 set -xe
 
-export GOPRIVATE=github.com/zuluapp
+export GOPRIVATE="github.com/zuluapp"
 export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
