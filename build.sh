@@ -24,7 +24,6 @@ cat .netrc
 ls -lha .netrc
 
 pwd
-ls -lha
 
 # install packages and dependencies
 go mod tidy
