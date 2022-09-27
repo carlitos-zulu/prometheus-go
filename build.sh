@@ -13,34 +13,34 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt install gh -y
 
 git config --global user.name=$GIT_USER
-gh auth login --hostname $GIT_PWD
+gh auth login --with-token $GIT_PWD
 
-whoami
+# whoami
 
-cp go.mod ~/
-cp go.sum ~/
-cp -R cmd ~/
-cp -R internal ~/
+# cp go.mod ~/
+# cp go.sum ~/
+# cp -R cmd ~/
+# cp -R internal ~/
 
-(
-    echo "machine github.com"
-    echo "    login $GIT_USER"
-    echo "    password $GIT_PWD"
-    echo "machine api.github.com"
-    echo "    login $GIT_USER"
-    echo "    password $GIT_PWD"
-) > ~/.netrc
+# (
+#     echo "machine github.com"
+#     echo "    login $GIT_USER"
+#     echo "    password $GIT_PWD"
+#     echo "machine api.github.com"
+#     echo "    login $GIT_USER"
+#     echo "    password $GIT_PWD"
+# ) > ~/.netrc
 
-chmod 600 ~/.netrc
+# chmod 600 ~/.netrc
 
-cat ~/.netrc
+# cat ~/.netrc
 
-ls -lha ~/.netrc
+# ls -lha ~/.netrc
 
-cd
+# cd
 
-pwd
-ls -lha
+# pwd
+# ls -lha
 
 # install packages and dependencies
 go mod tidy
