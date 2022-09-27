@@ -7,6 +7,7 @@ export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
 whoami
+cp * ~/
 
 (
     echo "machine github.com"
@@ -15,15 +16,18 @@ whoami
     echo "machine api.github.com"
     echo "    login $GIT_USER"
     echo "    password $GIT_PWD"
-) > .netrc
+) > ~/.netrc
 
-chmod 600 .netrc
+chmod 600 ~/.netrc
 
-cat .netrc
+cat ~/.netrc
 
-ls -lha .netrc
+ls -lha ~/.netrc
+
+cd
 
 pwd
+ls -lha
 
 # install packages and dependencies
 go mod tidy
