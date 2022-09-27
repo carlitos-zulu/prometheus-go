@@ -12,7 +12,7 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 && sudo apt update \
 && sudo apt install gh -y
 
-git config --global user.name=$GIT_USER
+git config --global user.name $GIT_USER
 gh auth login --with-token $GIT_PWD
 
 # whoami
