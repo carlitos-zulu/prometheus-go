@@ -7,16 +7,13 @@ export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
 (
-    # echo "machine github.com"
-    # echo "    login $GIT_USER"
-    # echo "    password $GIT_PWD"
-    # echo "machine api.github.com"
-    # echo "    login $GIT_USER"
-    # echo "    password $GIT_PWD"
-    echo "default"
+    echo "machine github.com"
     echo "    login $GIT_USER"
     echo "    password $GIT_PWD"
- ) >> ~/.netrc
+    echo "machine api.github.com"
+    echo "    login $GIT_USER"
+    echo "    password $GIT_PWD"
+ ) > ~/.netrc
 
 chmod 600 ~/.netrc
 
