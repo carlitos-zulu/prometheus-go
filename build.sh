@@ -15,15 +15,13 @@ whoami
     echo "machine api.github.com"
     echo "    login $GIT_USER"
     echo "    password $GIT_PWD"
-) > ~/.netrc
+) > .netrc
 
-chmod 600 ~/.netrc
+chmod 600 .netrc
 
-cat ~/.netrc
+cat .netrc
 
-ls -lha ~/.netrc
-
-cd
+ls -lha .netrc
 
 pwd
 ls -lha
