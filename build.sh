@@ -6,7 +6,7 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
-apt-get install gh
+apt install gh
 
 git config --global credential.cacheOptions "--timeout 300"
 git config --global user.name $GIT_USER
