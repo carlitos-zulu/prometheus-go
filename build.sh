@@ -6,14 +6,9 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
-echo "machine github.com\n\
-    login $GIT_USER\n\
-    password $GIT_PWD\n\
-\n\
-machine api.github.com\n\
-    login $GIT_USER\n\
-    password $GIT_PWD\n"\
-    >> ~/.netrc
+git config --global credential.cacheOptions "--timeout 300"
+git config --global user.name=$GIT_USER
+gh auth login --with-token $GIT_PWD
 
 # install packages and dependencies
 go mod tidy
