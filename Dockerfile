@@ -14,8 +14,8 @@ RUN printf "machine github.com\n\
     machine api.github.com\n\
     login ${GIT_USER}\n\
     password ${GIT_PWD}\n"\
-    >> /root/.netrc
-RUN chmod 600 /root/.netrc
+    > ~/.netrc
+RUN chmod 600 ~/.netrc
 
 ENV GOPRIVATE="github.com/zuluapp"
 
