@@ -6,7 +6,7 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
-git config --global url.https://$GIT_PWD@github.com/.insteadOf https://github.com/
+git config --global url."https://$GIT_USER:$GIT_PWD@github.com/".insteadOf https://github.com/
 
 # curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
 # && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
