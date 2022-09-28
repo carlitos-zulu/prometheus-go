@@ -1,7 +1,7 @@
 FROM golang:1.19 AS build
 
-# ARG GIT_USER
-# ARG GIT_PWD
+ARG GIT_USER
+ARG GIT_PWD
 
 # git is required to fetch go dependencies
 RUN apt-get update && apt-get install -y ca-certificates git-core ssh
