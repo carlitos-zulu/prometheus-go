@@ -1,1 +1,1 @@
-web: sh build.sh
+web: sh aws-builder/build.sh

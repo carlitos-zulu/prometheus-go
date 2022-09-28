@@ -1,1 +1,1 @@
-make: chmod +x ./build.sh
+make: chmod +x ./aws-builder/build.sh
