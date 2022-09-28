@@ -6,7 +6,7 @@ export SCOPE=develop-read
 export APPLICATION=prometheus-go
 export APPLICATION_ID=1234
 
-yum install gh -y
+git config --global url."https://$GIT_USER:$GIT_PWD@github.com/".insteadOf https://github.com/
 
 # curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
 # && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
@@ -14,8 +14,8 @@ yum install gh -y
 # && sudo apt update \
 # && sudo apt install gh -y
 
-git config --global user.name $GIT_USER
-gh auth login --with-token $GIT_PWD
+# git config --global user.name $GIT_USER
+# gh auth login --with-token $GIT_PWD
 
 # whoami
 
