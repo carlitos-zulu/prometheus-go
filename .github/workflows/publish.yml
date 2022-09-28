@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build Docker Image
-      run: docker build . --tag docker-prometheus-go
+      run: docker build . --tag docker-prometheus-go --build-arg GIT_USER=${{ secrets.GIT_USER }} --build-arg GIT_PWD=${{ secrets.GIT_PWD }}
 
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
