@@ -23,9 +23,9 @@ func (container readContainer) RegisterRoutes(basePath string) func(*gin.RouterG
 		v1Group := g.Group(basePath + "/v1")
 		roleGroup := v1Group.Group("/test")
 
-		roleGroup.GET("/", func(ctx *gin.Context) {
-			metrics := container.container.Metrics()
+		metrics := container.container.Metrics()
 
+		roleGroup.GET("/", func(ctx *gin.Context) {
 			logDuration := metrics.ObserveDuration("zulu_my_custom_duration", utils.Map{
 				"carlitos": "otro",
 			})
