@@ -1,24 +1,26 @@
 package dependencies
 
 import (
+	"github.com/zuluapp/go-libs/pkg/libs/metrics"
+	"github.com/zuluapp/go-libs/pkg/libs/metrics/entities"
+
 	"github.com/zuluapp/prometheus-go/internal/infraestructure/configuration"
-	"github.com/zuluapp/prometheus-go/internal/infraestructure/prometheus"
 )
 
 type Container struct {
-	metrics prometheus.Metrics
+	metrics entities.Metric
 }
 
 func StartDependencies() *Container {
 	/* config := */ configuration.GetConfiguration()
 
-	metrics := prometheus.InitMetrics()
+	metrics := metrics.Get()
 
 	return &Container{
 		metrics: metrics,
 	}
 }
 
-func (c Container) Metrics() prometheus.Metrics {
+func (c Container) Metrics() entities.Metric {
 	return c.metrics
 }

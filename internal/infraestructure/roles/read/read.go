@@ -2,9 +2,10 @@ package read
 
 import (
 	"github.com/gin-gonic/gin"
+
 	"github.com/zuluapp/go-libs/pkg/utils"
+
 	"github.com/zuluapp/prometheus-go/internal/infraestructure/dependencies"
-	prom "github.com/zuluapp/prometheus-go/internal/infraestructure/prometheus"
 )
 
 type readContainer struct {
@@ -19,8 +20,6 @@ func New(container *dependencies.Container) *readContainer {
 
 func (container readContainer) RegisterRoutes(basePath string) func(*gin.RouterGroup) {
 	return func(g *gin.RouterGroup) {
-		prom.Setup(g)
-
 		v1Group := g.Group(basePath + "/v1")
 		roleGroup := v1Group.Group("/test")
 

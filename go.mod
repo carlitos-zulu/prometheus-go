@@ -6,7 +6,7 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/prometheus/client_golang v1.13.0
 	github.com/stretchr/testify v1.8.0
-	github.com/zuluapp/go-libs v0.0.3
+	github.com/zuluapp/go-libs v0.0.5
 )
 
 require (
