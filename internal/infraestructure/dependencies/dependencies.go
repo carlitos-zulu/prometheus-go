@@ -7,20 +7,14 @@ import (
 	"github.com/zuluapp/prometheus-go/internal/infraestructure/configuration"
 )
 
-type Container struct {
-	metrics entities.Metric
-}
+type Container struct{}
 
 func StartDependencies() *Container {
 	/* config := */ configuration.GetConfiguration()
 
-	metrics := metrics.Get()
-
-	return &Container{
-		metrics: metrics,
-	}
+	return &Container{}
 }
 
-func (c Container) Metrics() entities.Metric {
-	return c.metrics
+func (Container) Metrics() entities.Metric {
+	return metrics.Get()
 }
