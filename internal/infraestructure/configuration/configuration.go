@@ -9,8 +9,7 @@ import (
 )
 
 // Configuration interface for configuration service.
-type Configuration interface {
-}
+type Configuration interface{}
 
 // GetConfiguration returns the configuration service depending on the scope environment variable.
 func GetConfiguration() Configuration {
