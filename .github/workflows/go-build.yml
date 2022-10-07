@@ -14,7 +14,7 @@ jobs:
       with:
         go-version: 1.19
 
-    - name: login gh
+    - name: GH Auth
       run: |
         (
             echo "machine github.com"
