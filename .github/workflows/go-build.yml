@@ -14,5 +14,13 @@ jobs:
       with:
         go-version: 1.19
 
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: github.com
+        username: ${{ secrets.GIT_USER }}
+        password: ${{ secrets.GIT_PWD }}
+        script: whoami
+
     - name: Build
       run: go build -v ./...
