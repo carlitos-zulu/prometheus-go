@@ -4,7 +4,6 @@ go 1.19
 
 require (
 	github.com/gin-gonic/gin v1.8.1
-	github.com/prometheus/client_golang v1.13.0
 	github.com/stretchr/testify v1.8.0
 	github.com/zuluapp/go-libs v0.0.5
 )
@@ -30,6 +29,7 @@ require (
 	github.com/newrelic/go-agent/v3/integrations/nrgin v1.1.2 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
+	github.com/prometheus/client_golang v1.13.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
 	github.com/prometheus/procfs v0.8.0 // indirect
