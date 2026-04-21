@@ -1,9 +1,14 @@
 package read
 
 import (
+	"math/rand"
+	"strconv"
+	"time"
+
 	"github.com/gin-gonic/gin"
 
 	"github.com/zuluapp/go-libs/pkg/utils"
+	utilsHttp "github.com/zuluapp/go-libs/pkg/utils/http"
 
 	"github.com/zuluapp/prometheus-go/internal/infraestructure/dependencies"
 )
@@ -25,24 +30,62 @@ func (container readContainer) RegisterRoutes(basePath string) func(*gin.RouterG
 
 		metrics := container.container.Metrics()
 
-		roleGroup.GET("/", func(ctx *gin.Context) {
-			logDuration := metrics.ObserveDuration("zulu_my_custom_duration", utils.Map{
-				"carlitos": "otro",
-			})
+		roleGroup.GET("/cash-in", func(ctx *gin.Context) {
+			rand.Seed(time.Now().UnixNano())
+
+			quantity, _ := utilsHttp.ExtractIDsParam(ctx, "quantity")
+
+			user := utils.Map{
+				"user":     "62cc266b805543b5a0115ce3",
+				"quantity": strconv.FormatUint(*quantity, 10),
+			}
+
+			logDuration := metrics.ObserveDuration("cash_in_duration", user)
 			defer logDuration()
 
-			metrics.Increment("zulu_my_custom_metric", utils.Map{
-				"carlitos": "carlitos-zulu",
-			})
+			metrics.Increment("cash_in_quantity", user)
 
-			metrics.IncrementGauge("zulu_my_custom_gauge", utils.Map{
-				"carlitos": "gauge",
-			})
+			sleepMax := 1200
+			sleepMin := 100
 
-			response := utils.Map{
-				"message": "funciona!",
+			sleep := rand.Intn(sleepMax-sleepMin+1) + sleepMin
+
+			time.Sleep(time.Duration(sleep) * time.Millisecond)
+
+			ctx.JSON(200, utils.Map{
+				"message":  "cash-in-ok",
+				"sleeped":  sleep,
+				"quantity": quantity,
+			})
+		})
+
+		roleGroup.GET("/cash-out", func(ctx *gin.Context) {
+			rand.Seed(time.Now().UnixNano())
+
+			quantity, _ := utilsHttp.ExtractIDsParam(ctx, "quantity")
+
+			user := utils.Map{
+				"user":     "62cc266b805543b5a0115ce3",
+				"quantity": strconv.FormatUint(*quantity, 10),
 			}
-			ctx.JSON(200, response)
+
+			logDuration := metrics.ObserveDuration("cash_out_duration", user)
+			defer logDuration()
+
+			metrics.Increment("cash_out_quantity", user)
+
+			sleepMax := 1200
+			sleepMin := 100
+
+			sleep := rand.Intn(sleepMax-sleepMin+1) + sleepMin
+
+			time.Sleep(time.Duration(sleep) * time.Millisecond)
+
+			ctx.JSON(200, utils.Map{
+				"message":  "cash-out-ok",
+				"sleeped":  sleep,
+				"quantity": quantity,
+			})
 		})
 	}
 }
